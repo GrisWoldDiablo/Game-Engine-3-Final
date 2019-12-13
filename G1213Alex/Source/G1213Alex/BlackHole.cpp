@@ -7,6 +7,9 @@
 #include "G1213AlexCharacter.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "G1213AlexProjectile.h"
+#include "Materials/MaterialInstanceDynamic.h"
+
 
 
 // Sets default values
@@ -43,6 +46,7 @@ void ABlackHole::Tick(float DeltaTime)
 		{
 			UGameplayStatics::SpawnEmitterAtLocation(GetWorld(), Particle, GetActorTransform());
 			StartTime = GetWorld()->TimeSeconds;
+			Player->GetCharacterMovement()->AddImpulse(Player->GetActorUpVector() * 1000.0f);
 			Player->GetCharacterMovement()->AddRadialImpulse(GetActorLocation(), MAX_FLT, -StrongForce, ERadialImpulseFalloff::RIF_Constant, false);
 		}
 	}
@@ -54,6 +58,7 @@ void ABlackHole::NotifyActorBeginOverlap(AActor* OtherActor)
 	Player = Cast<AG1213AlexCharacter>(OtherActor);
 	if (Player != nullptr && !Start)
 	{
+		MaterialInstance->SetScalarParameterValue(FName("Lerp"), 1.0f);
 		Start = true;
 		StartTime = GetWorld()->TimeSeconds;
 	}
@@ -69,5 +74,6 @@ void ABlackHole::NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiv
 
 void ABlackHole::OnConstruction(const FTransform& Transform)
 {
+	SphereComponent->SetSphereRadius(Distance);
 }
 
