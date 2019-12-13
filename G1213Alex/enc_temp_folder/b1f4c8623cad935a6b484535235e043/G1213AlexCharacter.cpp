@@ -153,9 +153,6 @@ void AG1213AlexCharacter::SetupPlayerInputComponent(class UInputComponent* Playe
 	PlayerInputComponent->BindAxis("TurnRate", this, &AG1213AlexCharacter::TurnAtRate);
 	PlayerInputComponent->BindAxis("LookUp", this, &APawn::AddControllerPitchInput);
 	PlayerInputComponent->BindAxis("LookUpRate", this, &AG1213AlexCharacter::LookUpAtRate);
-
-	//Final Stuff
-	PlayerInputComponent->BindAction("SurpriseBox", IE_Pressed, this, &AG1213AlexCharacter::SurpriseBox);
 }
 
 void AG1213AlexCharacter::OnFire()
@@ -329,25 +326,5 @@ void AG1213AlexCharacter::ChangeLevel(int Amount)
 	else if (Level > 99)
 	{
 		Level = 99;
-	}
-}
-
-void AG1213AlexCharacter::SurpriseBox()
-{
-	auto LootNumber = FMath::FRand();
-
-	if (LootNumber >= 1.0f - highChance)
-	{
-		this->ChangeLevel(1);
-		SurpriseBox();
-	}
-	else if (LootNumber >= 1.0f - highChance - lowChance)
-	{
-		this->ChangeLevel(-1);
-		SurpriseBox();
-	}
-	else if (LootNumber >= 1.0f - highChance - lowChance - veryLowChance)
-	{
-
 	}
 }

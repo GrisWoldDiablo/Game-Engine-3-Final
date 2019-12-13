@@ -147,10 +147,5 @@ public:
 
 	void ChangeLevel(int Amount);
 
-	const float highChance = 0.5f;		// 50%
-	const float lowChance = 0.3f;		// 30%
-	const float veryLowChance = 0.2f;	// 20%
-	void SurpriseBox();
-
 };
 
