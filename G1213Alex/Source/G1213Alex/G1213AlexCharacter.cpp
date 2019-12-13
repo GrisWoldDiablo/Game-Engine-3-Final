@@ -12,6 +12,8 @@
 #include "MotionControllerComponent.h"
 #include "XRMotionControllerBase.h" // for FXRMotionControllerBase::RightHandSourceId
 
+#include "PlayerWidget.h"
+
 DEFINE_LOG_CATEGORY_STATIC(LogFPChar, Warning, All);
 
 //////////////////////////////////////////////////////////////////////////
@@ -102,6 +104,21 @@ void AG1213AlexCharacter::BeginPlay()
 	{
 		VR_Gun->SetHiddenInGame(true, true);
 		Mesh1P->SetHiddenInGame(false, true);
+	}
+
+
+	// Final Stuff
+	auto theWidget = CreateWidget<UPlayerWidget>(UGameplayStatics::GetPlayerController(GetWorld(), 0), PlayerWidget);
+
+	// Add user widget to viewport, Will Crash if 
+	if (theWidget != nullptr)
+	{
+		theWidget->Player = this;
+		theWidget->AddToViewport(0);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Player Widget not assigned!"));
 	}
 }
 

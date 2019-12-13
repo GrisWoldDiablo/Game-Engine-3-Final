@@ -138,5 +138,10 @@ public:
 	/** Returns FirstPersonCameraComponent subobject **/
 	FORCEINLINE class UCameraComponent* GetFirstPersonCameraComponent() const { return FirstPersonCameraComponent; }
 
+	//Exam added stuff
+public:
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (ClampMin = "1", ClampMax = "99")) int Level = 10;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly) TSubclassOf<class UPlayerWidget> PlayerWidget;
+
 };
 
