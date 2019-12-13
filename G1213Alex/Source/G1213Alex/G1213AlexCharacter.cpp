@@ -315,3 +315,16 @@ bool AG1213AlexCharacter::EnableTouchscreenMovement(class UInputComponent* Playe
 	
 	return false;
 }
+
+void AG1213AlexCharacter::ChangeLevel(int Amount)
+{
+	Level += Amount;
+	if (Level < 1)
+	{
+		Level = 1;
+	}
+	else if (Level > 99)
+	{
+		Level = 99;
+	}
+}

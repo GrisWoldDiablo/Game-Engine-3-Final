@@ -27,5 +27,7 @@ public:
 public:
 	UPROPERTY(VisibleAnywhere) class UStaticMeshComponent* StaticMesh;
 	UPROPERTY(EditAnywhere) int Unlucky = 4;
+	virtual void NotifyHit(UPrimitiveComponent* MyComp, AActor* Other, UPrimitiveComponent* OtherComp, bool bSelfMoved, FVector HitLocation, FVector HitNormal, FVector NormalImpulse, const FHitResult& Hit) override;
+
 
 };

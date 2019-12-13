@@ -140,8 +140,12 @@ public:
 
 	//Exam added stuff
 public:
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, meta = (ClampMin = "1", ClampMax = "99")) int Level = 10;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly) int Level = 10;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly) TSubclassOf<class UPlayerWidget> PlayerWidget;
+
+	int CollectedCandy = 0;
+
+	void ChangeLevel(int Amount);
 
 };
 
